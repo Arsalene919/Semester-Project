@@ -1,0 +1,292 @@
+</s>
+in the domain of economic events
+<ARG0> A decrease in interest rates.</ARG0>
+<ARG1> An increase in consumer spending.</ARG1>
+<SIG0> As a result.</SIG0>
+
+<ARG0> A rise in the minimum wage.</ARG0>
+<ARG1> An increase in labor costs for businesses.</ARG1>
+<SIG0> Leads to.</SIG0>
+
+<ARG0> A drop in oil prices.</ARG0>
+<ARG1>A decrease in profits for oil-producing countries.</ARG1>
+<SIG0> Causes.</SIG0>
+
+<ARG0> An increase in government spending.</ARG0>
+<ARG1> An increase in inflation.</ARG1>
+<SIG0> Results in.</SIG0>
+
+<ARG0> A shortage of skilled workers.</ARG0>
+<ARG1> Higher wages for those with the necessary skills.</ARG1>
+<SIG0> Leads to. </s>
+
+</s>
+in the domain of social events
+        
+        
+<ARG0> A lack of RSVPs to a social event.</ARG0>
+<SIG0> Leads to.</SIG0>
+<ARG1> The event being canceled due to low attendance.</ARG1>
+
+<ARG0> Poor communication between event organizers and guests.</ARG0>
+<SIG0> Results in.</SIG0>
+<ARG1> Confusion and disorganization at the event.</ARG1>
+
+<ARG0> Inadequate preparation and organization for the event.</ARG0>
+<SIG0> Causes.</SIG0>
+<ARG1> Issues with logistics, such as insufficient seating or food, and a chaotic atmosphere at the event.</ARG1>
+
+<ARG0> Failure to properly advertise and promote the event. </ARG0>
+<SIG0> Results in.</SIG0>
+<ARG1> Low attendance and a lack of excitement and energy at the event.</ARG1>
+
+<ARG0> The unexpected cancellation of a key guest or performer. </ARG0>
+<SIG0> Leads to.</SIG0>
+<ARG1> The need to quickly find a replacement and adapt the event to accommodate the change, potentially causing schedule conflicts or other unanticipated problems.</ARG1> </s>
+
+</s>
+in the domain of political unrest
+        
+        
+<ARG0> A political system's failure to address the grievances of marginalized communities can lead to protests and civil unrest.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Curfews, police brutality, and property damage as the government attempts to maintain order.</ARG1>
+
+<ARG0> The lack of transparency and accountability in government decision-making can erode public trust and fuel popular discontent.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Mass protests, political upheaval, and demands for political reform.</ARG1>
+
+<ARG0> The manipulation of electoral processes or the suppression of opposition can breed political instability and fuel social unrest.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Mass demonstrations, civil disobedience, and the potential for political violence.</ARG1>
+
+<ARG0> Economic inequality and poverty can foster social unrest and political instability.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Protests, riots, and demands for economic reform and social justice.</ARG1>
+
+<ARG0> The presence of foreign interference or external threats can exacerbate political tensions and fuel political unrest.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Political instability, civil unrest, and the potential for political conflict.</ARG1></s>
+
+</s>in the domain of elections
+        
+        
+<ARG0> A high voter turnout leads to increased public trust in the election process.</ARG0>
+<SIG0> This is due to the fact that a high voter turnout indicates that a large number of people have confidence in the fairness and legitimacy of the election.</SIG0>
+<ARG1> As a result, the public is more likely to accept the outcome of the election and view it as a legitimate reflection of the will of the people.</ARG1>
+
+<ARG0> The use of electronic voting machines can result in more efficient and accurate vote counting.</ARG0>
+<SIG0> This is because electronic voting machines are designed to quickly and accurately count votes, reducing the potential for errors and delays that can occur with manual vote counting.</SIG0>
+<ARG1> As a result, election officials are better able to provide timely and accurate results to the public.</ARG1>
+
+<ARG0> The implementation of early voting and absentee ballots can increase voter turnout.</ARG0>
+<SIG0> This is because early voting and absentee ballots make it more convenient for voters to cast their ballots, allowing them to do so at a time and place that is more convenient for them.</SIG0>
+<ARG1> As a result, more people are likely to participate in the election, leading to a higher voter turnout.</ARG1>
+
+<ARG0> The presence of third-party candidates can increase voter engagement and turnout.</ARG0>
+<SIG0> This is because third-party candidates provide voters with more options to choose from, which can lead to increased interest and participation in the election.</SIG0>
+<ARG1> As a result, voter turnout may be higher than it would be in a two-party system, as more voters are engaged and invested in the election.</ARG1>
+
+<ARG0> The implementation of voter registration drives can lead to increased voter registration.</ARG0>
+<SIG0> This is because voter registration drives make it easier for eligible voters to register to vote, by providing them with the necessary forms and information. </SIG0>
+<ARG1> As a result, more eligible voters are likely to register to vote, leading to a higher voter registration rate.</ARG1></s>
+</s>
+in the domain of natural disasters 
+        
+        
+<ARG0> The accumulation of water in low-lying areas due to heavy rainfall, caused by a tropical storm, resulted in widespread flooding in the region.</ARG0>
+<SIG0> As a result of, due to </SIG0>
+<ARG1> Flooding </ARG1>
+
+
+<ARG0> The sudden release of built-up pressure within a volcano, caused by tectonic activity, led to a violent eruption. </ARG0>
+<SIG0> Resulted in </SIG0>
+<ARG1> Eruption </ARG1>
+
+
+<ARG0> The ground shaking violently, caused by an earthquake, left many buildings in ruins and caused injuries to people.</ARG0>
+<SIG0> Resulted in </SIG0>
+<ARG1> Ruins, injuries </ARG1>
+
+
+<ARG0> The rise in ocean levels due to melting glaciers, caused by global warming, has led to coastal flooding and increased the risk of storm surges.</ARG0>
+<SIG0> Resulted in </SIG0>
+<ARG1> Coastal flooding, storm surges </ARG1>
+
+<ARG0> The build-up of pressure in the atmosphere, caused by a tropical depression, resulted in a destructive cyclone.</ARG0>
+<SIG0> Resulted in</SIG0>
+<ARG1> Cyclone
+</ARG1></s>
+
+</s>in the domain of transport accidents
+        
+        
+<ARG0> A driver's decision to exceed the speed limit on a rainy night is the cause that leads to </ARG0>
+<SIG0> a car skidding on a wet road and colliding with a nearby tree, resulting in </SIG0>
+<ARG1> serious injuries for the driver and passengers, as well as property damage to the car and the tree.</ARG1>
+
+<ARG0> Failing to properly secure cargo in a truck can result in </ARG0>
+<SIG0> the cargo shifting during transit, causing the driver to lose control of the vehicle and collide with another vehicle on the road, leading to </SIG0>
+<ARG1> significant damages to both vehicles and potential injuries to the drivers and passengers.</ARG1>
+
+<ARG0> Driving under the influence of drugs or alcohol can cause </ARG0>
+<SIG0> a driver to lose focus, make poor decisions, or respond slowly to road conditions, leading to </SIG0>
+<ARG1> accidents that result in serious injuries or fatalities for the driver, passengers, or other vehicles on the road.</ARG1>
+
+<ARG0> Neglecting to properly maintain a vehicle can lead to </ARG0>
+<SIG0> mechanical malfunctions during operation, causing the driver to lose control of the vehicle and collide with another vehicle or object, resulting in </SIG0>
+<ARG1> damages to the vehicles and potential injuries to the drivers and passengers involved.</ARG1>
+
+<ARG0> Ignoring traffic signals or signs can result in </ARG0>
+<SIG0> the driver running a red light, causing a collision with another vehicle or pedestrian, resulting in </SIG0>
+<ARG1> significant damages to the vehicles and potential injuries or fatalities to the drivers, passengers, or pedestrians involved.</ARG1></s>
+
+</s> in the domain of crimes 
+        
+        
+<ARG0> A person's decision to rob a bank is caused by financial difficulties.</ARG0>
+<SIG0> This decision leads to
+<ARG1> The person being charged with a crime and facing legal consequences.
+
+<ARG0> A lack of security measures in a store can cause theft.</ARG0>
+<SIG0> This can lead to </SIG0>
+<ARG1> Losses for the store and potentially higher insurance premiums.</ARG1>
+
+<ARG0> An individual's use of drugs can cause them to become involved in criminal activity.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Arrests, criminal charges, and possible imprisonment.</ARG1>
+
+<ARG0> A person's exposure to violent media can cause aggressive behavior.</ARG0>
+<SIG0> This can result in </SIG0>
+<ARG1> Conflict with others, potential criminal charges for assault, and harm to relationships.</ARG1>
+
+<ARG0> A person's history of trauma or abuse can cause them to turn to criminal activity as a way to cope or seek revenge.</ARG0>
+<SIG0> This can lead to </SIG0>
+<ARG1> Criminal charges, possible imprisonment, and a cycle of trauma and violence that can continue into future relationships and interactions.</ARG1></s>
+
+</s>in the domain of industrial accidents
+        
+        
+<ARG0> A faulty electrical wiring in a factory caused a spark,</ARG0><SIG0> which ignited a pile of combustible materials,</SIG0><ARG1> resulting in a massive fire that destroyed the factory and injured several workers.</ARG1>
+
+<ARG0> A lack of proper safety protocols during the handling of hazardous chemicals led to a spill,</ARG0><SIG0> which resulted in the release of toxic fumes,</SIG0><ARG1> causing respiratory problems for several workers and contaminating the surrounding environment.</ARG1>
+
+<ARG0> A malfunctioning machine in a manufacturing plant caused a sudden stoppage,</ARG0><SIG0> which resulted in a build-up of pressure,</SIG0><ARG1> causing the machine to explode, resulting in severe injuries to nearby workers.</ARG1>
+
+<ARG0> A failure to properly maintain equipment in a production line led to a breakdown,</ARG0><SIG0> which resulted in a loss of power,</SIG0><ARG1> causing a delay in production and resulting in a significant financial loss for the company.</ARG1>
+
+<ARG0> A lack of proper training for workers handling heavy machinery led to an accident,</ARG0><SIG0> which resulted in injuries to several workers,</SIG0><ARG1> resulting in a significant loss of productivity and increased insurance premiums for the company.</ARG1></s>
+
+</s>in the domain of international relations 
+        
+        
+<ARG0> A decision by the United Nations to impose economic sanctions on a country.</ARG0>
+<SIG0> Led to.</SIG0>
+<ARG1> A decrease in the country's economic activity and standard of living.</ARG1>
+
+<ARG0> The United States' withdrawal from a major international treaty.</ARG0>
+<SIG0> Resulted in.</SIG0>
+<ARG1> A loss of trust and cooperation from other countries in similar treaties.</ARG1>
+
+<ARG0> A conflict between two neighboring countries.</ARG0>
+<SIG0> Caused.</SIG0>
+<ARG1> The displacement of thousands of civilians and the destruction of infrastructure.</ARG1>
+
+<ARG0> A major natural disaster in a developing country.</ARG0>
+<SIG0> Led to.</SIG0>
+<ARG1> A delay in the country's economic progress and an increase in poverty.</ARG1>
+
+<ARG0> A failure by a country to address human rights abuses within its borders.</ARG0>
+<SIG0> Resulted in.</SIG0>
+<ARG1> International condemnation and economic sanctions from other countries.</ARG1></s>
+
+</s>in the domain of home policy
+        
+        
+<ARG0> A lack of funding for public schools.</ARG0>
+<SIG0> Results in.</SIG0>
+<ARG1> Lower academic achievement for students.</ARG1>
+
+<ARG0> The implementation of stricter gun control laws.</ARG0>
+<SIG0> Causes.</SIG0>
+<ARG1> A decrease in gun violence and accidents.</ARG1>
+
+<ARG0> The construction of affordable housing.</ARG0>
+<SIG0> Results in.</SIG0>
+<ARG1> A decrease in homelessness and housing insecurity.</ARG1>
+
+<ARG0> The establishment of community gardens and urban farms.</ARG0>
+<SIG0> Leads to.</SIG0>
+<ARG1> Improved access to fresh produce and a reduction in food insecurity.</ARG1>
+
+<ARG0> The implementation of renewable energy sources.</ARG0>
+<SIG0> Causes.</SIG0>
+<ARG1> A decrease in greenhouse gas emissions and a reduction in environmental pollution.</ARG1></s>
+
+</s>in the domain of MUC-like events
+        
+        
+<ARG0> The decision to cut expenses </ARG0>
+<SIG0> led to </SIG0>
+<ARG1> a significant increase in profits
+</ARG1>
+
+<ARG0> The discovery of oil in the area </ARG0>
+<SIG0> resulted in </SIG0>
+<ARG1> a boom in the local economy
+</ARG1>
+
+<ARG0> The implementation of a new training program </ARG0>
+<SIG0> resulted in </SIG0>
+<ARG1> a significant improvement in employee productivity
+</ARG1>
+
+<ARG0> The announcement of a new product line </ARG0>
+<SIG0> led to </SIG0>
+<ARG1> a surge in sales and revenue </ARG1>
+
+
+<ARG0> The initiation of a new marketing campaign </ARG0>
+<SIG0> resulted in </SIG0>
+<ARG1> a significant increase in brand awareness and customer engagement
+</ARG1></s>
+
+</s>in the domain of KBP-like events
+        
+        
+<ARG0>The decision to launch a new product in the market</ARG0>,
+<SIG0>was made</SIG0>
+<ARG1>after conducting extensive market research</ARG1>.
+
+<ARG0>The use of social media for marketing purposes</ARG0>,
+<SIG0>led to</SIG0>
+<ARG1>increased brand awareness and customer engagement</ARG1>.
+
+<ARG0>The implementation of a new customer service strategy</ARG0>,
+<SIG0>resulted in</SIG0>
+<ARG1>a significant decrease in customer complaints and an increase in customer satisfaction ratings</ARG1>.
+
+<ARG0>The adoption of a new technology in the production process</ARG0>,
+<SIG0>resulted in</SIG0>
+<ARG1>a significant improvement in efficiency and cost savings</ARG1>.
+
+<ARG0>The introduction of a new sales incentive program</ARG0>,
+<SIG0>led to</SIG0>
+<ARG1>an increase in sales and revenue for the company</ARG1>.</s>
+The output with microsoft-phi: 
+1. Economic Event: <ARG0>A sudden increase in interest rates by the central bank</ARG0> <SIG0>due to rising inflation</SIG0> <ARG1>This led to a decrease in consumer spending</ARG1>.
+
+2. Social Event: <ARG0>The introduction of a new educational policy</ARG0> <SIG0>aimed at improving literacy rates</SIG0> <ARG1>This resulted in a significant increase in school enrollment</ARG1>.
+
+3. Political Unrest: <ARG0>The government's decision to increase taxes on the middle class</ARG0> <SIG0>without proper communication and understanding of its impact</SIG0> <ARG1>This sparked widespread protests and calls for policy revision</ARG1>.
+
+4. Elections: <ARG0>A charismatic and popular candidate running for office</ARG0> <SIG0>with a strong focus on healthcare and education reforms</SIG0> <ARG1>This led to a landslide victory for the candidate</ARG1>.
+
+5. Natural Disaster: <ARG0>A powerful earthquake measuring 7.8 on the Richter scale</ARG0> <SIG0>occurring near a densely populated city</SIG0> <ARG1>This caused massive destruction of infrastructure and loss of lives</ARG1>.
+
+6. Transport Accidents: <ARG0>A malfunction in the braking system of a train</ARG0> <SIG0>due to poor maintenance</SIG0> <ARG1>This resulted in a derailment and several casualties</ARG1>.
+
+7. Crimes: <ARG0>A lack of proper security measures in a high-crime area</ARG0> <SIG0>coupled with socio-economic disparities</SIG0> <ARG1>This led to a surge in theft and violent crimes</ARG1>.
+
+8. Industrial Accidents: <ARG0>Negligence in following safety protocols by the factory management</ARG0> <SIG0>due to cost-cutting measures</SIG0> <ARG1>This caused a major explosion, leading to loss of lives.</ARG1>
+
