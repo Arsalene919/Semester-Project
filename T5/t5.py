@@ -9,6 +9,86 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 
 # Clear cached memory
 torch.cuda.empty_cache()
+import sklearn_crfsuite
+
+def tokenize(sentence):
+    # Simple tokenizer that can handle basic punctuation
+    return re.findall(r"\w+|[^\w\s]", sentence, re.UNICODE)
+def word2features(sent, i):
+    word = sent[i]
+    features = {
+        'bias': 1.0,
+        'word.lower()': word.lower(),
+        'word[-3:]': word[-3:],
+        'word.isupper()': word.isupper(),
+        'word.istitle()': word.istitle(),
+        'word.isdigit()': word.isdigit(),
+    }
+    if i > 0:
+        word1 = sent[i-1]
+        features.update({
+            '-1:word.lower()': word1.lower(),
+            '-1:word.istitle()': word1.istitle(),
+        })
+    else:
+        features['BOS'] = True
+
+    if i < len(sent)-1:
+        word1 = sent[i+1]
+        features.update({
+            '+1:word.lower()': word1.lower(),
+            '+1:word.istitle()': word1.istitle(),
+        })
+    else:
+        features['EOS'] = True
+    return features
+
+def sent2features(sent):
+    return [word2features(sent, i) for i in range(len(sent))]
+
+def train_crf(X_train, y_train):
+    crf = sklearn_crfsuite.CRF(
+        algorithm='lbfgs',
+        c1=0.1,
+        c2=0.1,
+        max_iterations=100,
+        all_possible_transitions=True
+    )
+    crf.fit(X_train, y_train)
+    return crf
+
+def convert_to_bilou(context, labels):
+    words = tokenize(context)
+    bilou_labels = ["O"] * len(words)
+    print(f"Context Words: {words}")
+
+    for label in labels:
+        label_parts = label.split(maxsplit=1)
+        if len(label_parts) < 2:
+            print(f"Skipping invalid label: {label}")
+            continue
+
+        label_type, label_text = label_parts
+        label_words = tokenize(label_text)
+        print(f"Label Type: {label_type}, Label Words: {label_words}")
+
+        match_found = False
+        for i in range(len(words) - len(label_words) + 1):
+            if words[i:i + len(label_words)] == label_words:
+                match_found = True
+                if len(label_words) == 1:
+                    bilou_labels[i] = f"U-{label_type}"
+                else:
+                    bilou_labels[i] = f"B-{label_type}"
+                    for j in range(1, len(label_words) - 1):
+                        bilou_labels[i + j] = f"I-{label_type}"
+                    bilou_labels[i + len(label_words) - 1] = f"L-{label_type}"
+                break
+        if not match_found:
+            print(f"No match found for '{label_text}' in {words}")
+
+    print(f"BILOU Labels: {bilou_labels}")
+    return bilou_labels
 
 # Load your datasets efficiently
 dataset = load_dataset('csv', data_files={
@@ -18,7 +98,25 @@ dataset = load_dataset('csv', data_files={
 test_dataset = load_dataset('csv', data_files={
     'test': '/teamspace/studios/this_studio/test_subtask2_text.csv'
 }, cache_dir='./cache')
+def prepare_data_for_crf(dataset):
+    X_data = []
+    y_data = []
+    for example in dataset:
+        tokens = tokenize(example['text'])
+        # Ensure 'labels' exist and are provided correctly, fallback to an empty list if not present
+        bilou_labels = convert_to_bilou(example['text'], example.get('labels', []))
 
+        # Generate features for each token in the document
+        X_features = sent2features(tokens)
+        # Append features and labels for this example to the dataset lists
+        X_data.append(X_features)
+        y_data.append(bilou_labels)
+
+    return X_data, y_data
+
+# Prepare and train the CRF
+X_train, y_train = prepare_data_for_crf(dataset['train'])
+crf_model = train_crf(X_train, y_train)
 
 # Function to print GPU memory usage
 def print_gpu_utilization():
@@ -40,45 +138,6 @@ save_directory = "./saved_model"
 # Save the model and tokenizer
 t5_model.save_pretrained(save_directory)
 t5_tokenizer.save_pretrained(save_directory)
-def tokenize(sentence):
-    # Simple tokenizer that can handle basic punctuation
-    return re.findall(r"\w+|[^\w\s]", sentence, re.UNICODE)
-
-
-def convert_to_bilou(context, labels):
-    words = tokenize(context)  # Use the new tokenize function
-    bilou_labels = ["O"] * len(words)
-    print(f"Context Words: {words}")
-
-    for label in labels:
-        label_parts = label.split(maxsplit=1)  # Ensure split only happens at the first space
-        if len(label_parts) < 2:
-            print(f"Skipping invalid label: {label}")
-            continue
-
-        label_type, label_text = label_parts
-        label_words = tokenize(label_text)
-        print(f"Label Type: {label_type}, Label Words: {label_words}")
-
-        # Scan for exact match of the label sequence within words
-        for i in range(len(words) - len(label_words) + 1):
-            if words[i:i + len(label_words)] == label_words:
-                if len(label_words) == 1:
-                    bilou_labels[i] = f"U-{label_type}"
-                else:
-                    bilou_labels[i] = f"B-{label_type}"
-                    for j in range(1, len(label_words) - 1):
-                        bilou_labels[i + j] = f"I-{label_type}"
-                    bilou_labels[i + len(label_words) - 1] = f"L-{label_type}"
-                break  # Assumes only one match per label; remove if multiple matches are possible
-        else:
-            print(f"No match found for {label_words} in {words}")
-
-    print(f"BILOU Labels: {bilou_labels}")
-    return bilou_labels
-
-
-
 
 def preprocess_t5_function(examples):
     inputs = ["extract causality: " + text for text in examples['text']]
@@ -214,10 +273,16 @@ def identify_causal_components(text):
 # Generate predictions on test dataset
 t5_predictions = []
 contexts = [example['text'] for example in test_dataset['test']]
-
+def predict_with_crf(crf_model, text):
+    tokens = tokenize(text)
+    features = sent2features(tokens)
+    tags = crf_model.predict_single(features)
+    return tags
 for context in contexts:
     prediction = identify_causal_components(context)
     t5_predictions.append(prediction)
+    bilou_tags = predict_with_crf(crf_model, context)
+    #formatted_text = insert_spans(context, bilou_tags)
 
 # Save the predictions to a CSV file
 output_df = pd.DataFrame({
@@ -228,40 +293,48 @@ output_df = pd.DataFrame({
 output_df.to_csv('/teamspace/studios/this_studio/predicted_causal_text_w_pairs.csv', index=False)
 print("Predictions saved to /teamspace/studios/this_studio/predicted_causal_text_w_pairs.csv")
 def insert_spans(text, bilou_tags):
-    words = text.split()
-    labeled_text = ""
-    current_span = ""
-    current_label = ""
+    words = tokenize(text)  # Make sure this tokenizer splits text the same way it's done in convert_to_bilou
+    formatted_text = []
+    open_tag = None
 
+    # Define your tag mapping based on your specific needs
     tag_mapping = {
-        'CAUSE': 'ARG0',
-        'EFFECT': 'ARG1',
-        'SIGNAL': 'SIG0'
+        'ARG0': 'ARG0',
+        'ARG1': 'ARG1',
+        'SIG': 'SIG0'  # Adjust this if your tagging scheme uses a different identifier for signals
     }
 
     for word, tag in zip(words, bilou_tags):
-        tag_type = tag[2:] if '-' in tag else ""
-        mapped_tag = tag_mapping.get(tag_type, "")
+        if tag == 'O':
+            if open_tag:
+                formatted_text.append(f"</{open_tag}>")
+                open_tag = None
+            formatted_text.append(word)
+        else:
+            tag_type, label = tag.split('-') if '-' in tag else ('O', None)
+            mapped_label = tag_mapping.get(label, label)  # Use the mapping to get the right tag
 
-        if tag.startswith("B-"):
-            if current_span:
-                labeled_text += f"<{current_label}>{current_span.strip()}</{current_label}> "
-            current_label = mapped_tag
-            current_span = word + " "
-        elif tag.startswith("I-") or tag.startswith("L-"):
-            current_span += word + " "
-        elif tag.startswith("U-"):
-            labeled_text += f"<{mapped_tag}>{word}</{mapped_tag}> "
-        elif tag == "O":
-            if current_span:
-                labeled_text += f"<{current_label}>{current_span.strip()}</{current_label}> "
-                current_span = ""
-            labeled_text += word + " "
+            if tag_type == 'B':
+                if open_tag:
+                    formatted_text.append(f"</{open_tag}>")
+                open_tag = mapped_label
+                formatted_text.append(f"<{mapped_label}>{word}")
+            elif tag_type == 'I' and open_tag:
+                formatted_text.append(f" {word}")
+            elif tag_type == 'L' and open_tag:
+                formatted_text.append(f" {word}</{mapped_label}>")
+                open_tag = None
+            elif tag_type == 'U':
+                if open_tag:
+                    formatted_text.append(f"</{open_tag}>")
+                formatted_text.append(f"<{mapped_label}>{word}</{mapped_label}>")
+                open_tag = None
 
-    if current_span:
-        labeled_text += f"<{current_label}>{current_span.strip()}</{current_label}>"
+    if open_tag:
+        formatted_text.append(f"</{open_tag}>")
 
-    return labeled_text.strip()
+    return ' '.join(formatted_text)
+
 
 # Process predictions to add spans
 labeled_predictions = []
