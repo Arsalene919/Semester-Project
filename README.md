@@ -1,5 +1,5 @@
 # Semester-Project
-Analyzing Causal Relations in Socio-political Events Extracted from Text: A Comparative Study of Large Language Models and Pretrained Language Models}
+Analyzing Causal Relations in Socio-political Events Extracted from Text: A Comparative Study of Large Language Models and Pretrained Language Models
 
 We used this repository to try T5 model: https://github.com/idiap/cncsharedtask/tree/main
 
